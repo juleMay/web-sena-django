@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+import os.path
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -77,13 +78,18 @@ WSGI_APPLICATION = 'web_sena.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+DBNAME = 'mongodb+srv://sena:sena@sena.drwmg1p.mongodb.net/?retryWrites=true&w=majority'
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'sena.db',
+        'ENGINE': 'djongo',
+        'NAME': 'web-sena',
+        'ENFORCE_SCHEMA': False,
+        'CLIENT': {
+            'host': 'mongodb+srv://sena:sena@sena.drwmg1p.mongodb.net/?retryWrites=true&w=majority'
+        }
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -119,7 +125,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-import os.path
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
