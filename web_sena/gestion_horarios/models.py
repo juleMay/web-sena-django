@@ -56,9 +56,8 @@ class Horario(models.Model):
     competencia = models.ForeignKey(
         Competencia, null=True, on_delete=models.SET_NULL)
     docente = models.ForeignKey(Docente, null=True, on_delete=models.SET_NULL)
-
-    inicio = models.DateTimeField()
-    final = models.TimeField()
+    hora_inicio = models.TimeField()
+    hora_final = models.TimeField()
 
     def __str__(self):
         return "ID: {0} | NOMBRE: {1} | TIPO: {2} | CAPACIDAD ESTUDIANTES: {3} | FECHA Y HORA INICIAL: {4} | HORA FINAL: {5}".format(self.pk, self.ambiente.nombre, self.competencia.nombre, self.docente.nombre, self.inicio, self.final)
