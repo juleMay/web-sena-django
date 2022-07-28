@@ -25,8 +25,11 @@ def addHorario(request):
     if request.method == 'POST':
         form = HorarioForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            return redirect('horarios')
+            data = form.cleaned_data
+            horarios = Horario.objects.filter(docente=data['docente'])
+            print(horarios)
+            #form.save()
+            #return redirect('horarios')
     return render(request, 'AddTemplate.html', {'form': form, 'nombre_crud': "Horario", 'root': 'horarios'})
 
 

@@ -5,8 +5,6 @@ from UserAuthentication.decorators import allowed_users
 # Create your views here.
 from gestion_horarios.models import Docente
 
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['profesor'])
 def home(request):
     return render(request, 'HomeTemplate.html')
 
