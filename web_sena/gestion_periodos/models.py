@@ -1,17 +1,20 @@
 from django.db import models
-
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
+from datetime import datetime, timedelta
 # Create your models here.
 
-class Periodo(models.Model):
-    DURACION = (
-        ('3', '3 Meses'),
-        ('6', '6 Meses'),
-    )
 
+class Periodo(models.Model):
     nombre = models.CharField(max_length=200)
-    duracion = models.CharField(max_length=200, choices=DURACION)
-    fecha_inicio = models.DateTimeField()
-    fecha_final = models.DateTimeField()
+    fecha_inicio = models.DateField()
+    fecha_final = models.DateField()
+
+    def save(self, *args, **kwargs):
+        if self.fecha_final != self.fecha_inicio + timedelta(days=90) and self.fecha_final != self.fecha_inicio + timedelta(days=180):
+            raise ValidationError(
+                "Ingrese una fecha final válida. El periodo debe durar 3 o 6 meses")
+        super(Periodo, self).save(*args, **kwargs)
 
     def __str__(self):
-        return "NOMBRE:{0} DURACION:{1} FECHA DE INICIO:{2} FECHA FINAL:{3}".format(self.nombre, self.duracion, self.fecha_inicio, self.fecha_final)
+        return "NOMBRE: {0} | FECHA DE INICIO: {1} | FECHA FINAL: {2}".format(self.nombre, self.fecha_inicio, self.fecha_final)
