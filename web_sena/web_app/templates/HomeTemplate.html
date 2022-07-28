@@ -1,0 +1,30 @@
+{% extends './BaseTemplate.html' %}
+
+{% block title %}Sena - Horarios{% endblock %}
+
+{% block body %}
+<div class="card text-center">
+    <div class="card-header">
+      Bienvenido
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Plataforma de Gestión de Horarios</h5>
+      <p class="card-text">Por favor inicie sesión para acceder a la plataforma.</p>
+    {% if not request.user.is_authenticated %}
+    <div class="btn-group">
+          <a href="/login/" class="btn btn-primary active" aria-current="page">Iniciar Sesión</a>
+          <a href="/register/" class="btn btn-danger">Registrarse</a>
+    </div>
+    {% elif request.user.is_superuser %}
+    <div class="btn-group">
+        <a href="/periodos/" class="btn btn-primary" aria-current="page">Periodos</a>
+        <a href="/ambientes/" class="btn btn-primary" aria-current="page">Ambientes</a>
+        <a href="/horarios/" class="btn btn-primary" aria-current="page">Horarios</a>
+    </div>
+    {% endif %}
+</div>
+    <div class="card-footer text-muted">
+        © 2022 Sena
+    </div>
+</div>
+{% endblock %}
