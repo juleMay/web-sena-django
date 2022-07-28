@@ -11,7 +11,7 @@ from .forms import HorarioForm
 @allowed_users(allowed_roles=['administrador','coordinador'])
 def home(request):
     horarios = Horario.objects.all()
-    field_names = ["Id","Nombre","Tipo","Capacidad","Ubicación"]
+    field_names = ["Id","Ambiente","Competencia","Docente","Hora Inicial","Hora Final"]
     values = horarios.values()
     return render(request, 'CrudTemplate.html', {"field_names": field_names, 'values': values, 'root':'horarios'})
 

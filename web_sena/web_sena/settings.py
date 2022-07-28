@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'web_app',
     'gestion_periodos',
     'gestion_ambientes',
     'gestion_horarios',
