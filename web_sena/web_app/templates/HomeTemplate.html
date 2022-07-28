@@ -1,4 +1,5 @@
 {% extends './BaseTemplate.html' %}
+{% load user_tags %}
 
 {% block title %}Sena - Horarios{% endblock %}
 
@@ -15,12 +16,14 @@
           <a href="/login/" class="btn btn-primary active" aria-current="page">Iniciar Sesión</a>
           <a href="/register/" class="btn btn-danger">Registrarse</a>
     </div>
-    {% elif request.user.is_superuser %}
+    {% elif request.user|has_group:"coordinador" %}
     <div class="btn-group">
         <a href="/periodos/" class="btn btn-primary" aria-current="page">Periodos</a>
         <a href="/ambientes/" class="btn btn-primary" aria-current="page">Ambientes</a>
         <a href="/horarios/" class="btn btn-primary" aria-current="page">Horarios</a>
     </div>
+    {% elif request.user|has_group:"profesor" %}
+        <a href="/horario/" class="btn btn-primary" aria-current="page">Ver Horarios</a>
     {% endif %}
 </div>
     <div class="card-footer text-muted">

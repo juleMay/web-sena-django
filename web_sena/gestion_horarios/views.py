@@ -7,13 +7,16 @@ from UserAuthentication.decorators import allowed_users
 from .models import Horario
 from .forms import HorarioForm
 
+
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['administrador','coordinador'])
+@allowed_users(allowed_roles=['administrador', 'coordinador'])
 def home(request):
     horarios = Horario.objects.all()
-    field_names = ["Id","Ambiente","Competencia","Docente","Hora Inicial","Hora Final"]
+    field_names = ["Id", "Ambiente", "Competencia",
+                   "Docente", "Día", "Hora Inicial", "Hora Final"]
     values = horarios.values()
-    return render(request, 'CrudTemplate.html', {"field_names": field_names, 'values': values, 'root':'horarios'})
+    return render(request, 'CrudTemplate.html', {"field_names": field_names, 'values': values, 'root': 'horarios'})
+
 
 @login_required(login_url='login')
 def addHorario(request):
@@ -23,10 +26,11 @@ def addHorario(request):
         if form.is_valid():
             form.save()
             return redirect('horarios')
-    return render(request, 'AddTemplate.html', {'form': form, 'nombre_crud': "Horario", 'root':'horarios'})
+    return render(request, 'AddTemplate.html', {'form': form, 'nombre_crud': "Horario", 'root': 'horarios'})
+
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['administrador','coordinador'])
+@allowed_users(allowed_roles=['administrador', 'coordinador'])
 def updateHorario(request, id):
     periodo = Horario.objects.get(id=id)
     form = HorarioForm(instance=periodo)
@@ -35,10 +39,11 @@ def updateHorario(request, id):
         if form.is_valid():
             form.save()
             return redirect('horarios')
-    return render(request, 'AddTemplate.html', {'form': form, 'root':'horarios'})
+    return render(request, 'AddTemplate.html', {'form': form, 'root': 'horarios'})
+
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['administrador','coordinador'])
+@allowed_users(allowed_roles=['administrador', 'coordinador'])
 def deleteHorario(request, id):
     periodo = Horario.objects.get(id=id)
     periodo.delete()

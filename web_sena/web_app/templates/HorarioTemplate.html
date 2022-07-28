@@ -1,0 +1,32 @@
+{% extends './BaseTemplate.html' %}
+{% load static %}
+
+{% block title %}Horario{% endblock %}
+{% block body %}
+<div class="card m-5">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Ambiente</th>
+                        <th>Competencia</th>
+                        <th>Día</th>
+                        <th>Hora Inicial</th>
+                        <th>Hora Final</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entrada in values %}
+                    <tr>
+                        {% for key, value in entrada.items %}
+                            <td>{{value}}</td>
+                        {% endfor %}
+                    </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

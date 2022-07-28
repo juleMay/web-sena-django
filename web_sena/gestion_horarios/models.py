@@ -51,13 +51,21 @@ class Docente(models.Model):
 
 
 class Horario(models.Model):
+    DIA = (
+        ('L', 'Lunes'),
+        ('M', 'Martes'),
+        ('MI', 'Miercoles'),
+        ('J', 'Jueves'),
+        ('V', 'Viernes'),
+    )
     ambiente = models.ForeignKey(
         Ambiente, null=True, on_delete=models.SET_NULL)
     competencia = models.ForeignKey(
         Competencia, null=True, on_delete=models.SET_NULL)
     docente = models.ForeignKey(Docente, null=True, on_delete=models.SET_NULL)
+    dia = models.CharField(max_length=200, choices=DIA)
     hora_inicio = models.TimeField()
     hora_final = models.TimeField()
 
     def __str__(self):
-        return "ID: {0} | NOMBRE: {1} | TIPO: {2} | CAPACIDAD ESTUDIANTES: {3} | FECHA Y HORA INICIAL: {4} | HORA FINAL: {5}".format(self.pk, self.ambiente.nombre, self.competencia.nombre, self.docente.nombre, self.inicio, self.final)
+        return "ID: {0} | NOMBRE: {1} | TIPO: {2} | CAPACIDAD ESTUDIANTES: {3} | DIA: {4} | HORA INICIAL: {5} | HORA FINAL: {6}".format(self.pk, self.ambiente.nombre, self.competencia.nombre, self.docente.nombre, self.inicio, self.final)
