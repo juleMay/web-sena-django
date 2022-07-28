@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'gestion_periodos',
     'gestion_ambientes',
+    'gestion_horarios',
     'UserAuthentication'
 ]
 

@@ -17,4 +17,4 @@ class Periodo(models.Model):
         super(Periodo, self).save(*args, **kwargs)
 
     def __str__(self):
-        return "NOMBRE: {0} | FECHA DE INICIO: {1} | FECHA FINAL: {2}".format(self.nombre, self.fecha_inicio, self.fecha_final)
+        return "ID: {0} | NOMBRE: {1} | FECHA DE INICIO: {2} | FECHA FINAL: {3}".format(self.pk, self.nombre, self.fecha_inicio, self.fecha_final)

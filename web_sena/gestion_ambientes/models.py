@@ -25,4 +25,4 @@ class Ambiente(models.Model):
     ubicacion = models.CharField(max_length=200)
 
     def __str__(self):
-        return "NOMBRE: {0} | TIPO: {1} | CAPACIDAD ESTUDIANTES: {2} | UBICACION: {3}".format(self.nombre, self.tipo, self.aforo, self.ubicacion)
+        return "ID: {0} | NOMBRE: {1} | TIPO: {2} | CAPACIDAD ESTUDIANTES: {3} | UBICACION: {4}".format(self.pk, self.nombre, self.tipo, self.aforo, self.ubicacion)
