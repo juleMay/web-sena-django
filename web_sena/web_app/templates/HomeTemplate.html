@@ -23,7 +23,10 @@
         <a href="/horarios/" class="btn btn-primary" aria-current="page">Horarios</a>
     </div>
     {% elif request.user|has_group:"profesor" %}
+    <div class="btn-group">
         <a href="/horario/" class="btn btn-primary" aria-current="page">Ver Horarios</a>
+        <a href="/perfil/" class="btn btn-success" aria-current="page">Ver Perfil</a>
+    </div>
     {% endif %}
 </div>
     <div class="card-footer text-muted">

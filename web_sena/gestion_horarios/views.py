@@ -19,6 +19,7 @@ def home(request):
 
 
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['administrador', 'coordinador'])
 def addHorario(request):
     form = HorarioForm()
     if request.method == 'POST':

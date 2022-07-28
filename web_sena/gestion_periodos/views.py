@@ -7,13 +7,15 @@ from UserAuthentication.decorators import allowed_users
 from .models import Periodo
 from .forms import PeriodoForm
 
+
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['administrador','coordinador'])
+@allowed_users(allowed_roles=['administrador', 'coordinador'])
 def home(request):
     periodos = Periodo.objects.all()
-    field_names = ["Id","Nombre","Fecha de Inicio","Fecha Final"]
+    field_names = ["Id", "Nombre", "Fecha de Inicio", "Fecha Final"]
     values = periodos.values()
-    return render(request, 'CrudTemplate.html', {"field_names": field_names, 'values': values})
+    return render(request, 'CrudTemplate.html', {"field_names": field_names, 'values': values, 'root': 'periodos'})
+
 
 @login_required(login_url='login')
 def addPeriodo(request):
@@ -24,10 +26,11 @@ def addPeriodo(request):
             form.save()
             return redirect('periodos')
 
-    return render(request, 'AddTemplate.html', {'form': form, 'nombre_crud': "Periodo Académico"})
+    return render(request, 'AddTemplate.html', {'form': form, 'nombre_crud': "Periodo Académico", 'root': 'periodos'})
+
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['administrador','coordinador'])
+@allowed_users(allowed_roles=['administrador', 'coordinador'])
 def updatePeriodo(request, id):
     periodo = Periodo.objects.get(id=id)
     form = PeriodoForm(instance=periodo)
@@ -36,10 +39,11 @@ def updatePeriodo(request, id):
         if form.is_valid():
             form.save()
             return redirect('periodos')
-    return render(request, 'AddTemplate.html', {'form': form})
+    return render(request, 'AddTemplate.html', {'form': form, 'root': 'periodos'})
+
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['administrador','coordinador'])
+@allowed_users(allowed_roles=['administrador', 'coordinador'])
 def deletePeriodo(request, id):
     periodo = Periodo.objects.get(id=id)
     periodo.delete()
