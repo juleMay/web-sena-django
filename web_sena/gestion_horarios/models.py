@@ -46,6 +46,9 @@ class Docente(models.Model):
     tipo_contrato = models.CharField(max_length=200, choices=TIPO_CONTRATO)
     area = models.CharField(max_length=200)
 
+    def __str__(self):
+        return "ID: {0} | NOMBRE: {1} | IDENTIFICACION: {2} | TIPO: {3} | CONTRATO: {4} | AREA: {5}".format(self.pk, self.nombre, self.identificación, self.tipo_docente, self.tipo_contrato, self.area)
+
 
 class Horario(models.Model):
     ambiente = models.ForeignKey(
@@ -55,7 +58,7 @@ class Horario(models.Model):
     docente = models.ForeignKey(Docente, null=True, on_delete=models.SET_NULL)
 
     inicio = models.DateTimeField()
-    duracion = models.DurationField()
+    final = models.TimeField()
 
     def __str__(self):
-        return "ID: {0} | NOMBRE: {1} | TIPO: {2} | CAPACIDAD ESTUDIANTES: {3} | UBICACION: {4}".format(self.pk, self.ambiente.nombre, self.competencia.nombre, self.docente.nombre, self.inicio, self.duracion)
+        return "ID: {0} | NOMBRE: {1} | TIPO: {2} | CAPACIDAD ESTUDIANTES: {3} | FECHA Y HORA INICIAL: {4} | HORA FINAL: {5}".format(self.pk, self.ambiente.nombre, self.competencia.nombre, self.docente.nombre, self.inicio, self.final)
