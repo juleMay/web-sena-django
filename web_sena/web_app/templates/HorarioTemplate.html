@@ -9,19 +9,13 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Ambiente</th>
-                        <th>Competencia</th>
-                        <th>Día</th>
-                        <th>Hora Inicial</th>
-                        <th>Hora Final</th>
+                        <th>Horario</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for entrada in values %}
+                    {% for entrada in horario %}
                     <tr>
-                        {% for key, value in entrada.items %}
-                            <td>{{value}}</td>
-                        {% endfor %}
+                        <td>{{entrada}}</td>
                     </tr>
                     {%endfor%}
                 </tbody>

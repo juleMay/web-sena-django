@@ -68,4 +68,4 @@ class Horario(models.Model):
     hora_final = models.TimeField()
 
     def __str__(self):
-        return "ID: {0} | NOMBRE: {1} | TIPO: {2} | CAPACIDAD ESTUDIANTES: {3} | DIA: {4} | HORA INICIAL: {5} | HORA FINAL: {6}".format(self.pk, self.ambiente.nombre, self.competencia.nombre, self.docente.nombre, self.inicio, self.final)
+        return "ID: {0} | AMBIENTE: {1} | COMPETENCIA: {2} | DOCENTE: {3} | DIA: {4} | HORA INICIAL: {5} | HORA FINAL: {6}".format(self.pk, self.ambiente.nombre, self.competencia.nombre, self.docente.nombre, self.dia, self.hora_inicio, self.hora_final)

@@ -7,7 +7,7 @@ def home(request):
     return render(request, 'HomeTemplate.html')
 
 def horario(request):
-    profesor = Docente.objects.get(nombre="Juan Perez")
-    cart = list(client.cart_set.all())
-    horario = profe
-    return render(request, 'HorarioTemplate.html')
+    docente = Docente.objects.get(nombre="Juan Perez")
+    horario = list(docente.horario_set.all())
+    print(horario)
+    return render(request, 'HorarioTemplate.html', {'horario':horario})
