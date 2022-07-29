@@ -1,7 +1,11 @@
 {% extends './BaseTemplate.html' %}
 
 {% block title %}CRUD - Create{% endblock %}
-
+{% block nav_buttons %}
+<li class="nav-item m-1">
+    <a class="btn btn-outline-primary" aria-current="page" href="/{{root}}/">Regresar</a>
+</li>
+{% endblock%}
 {% block body %}
 <div class="card mt-5 m-auto w-50">
     <div class="card-body">

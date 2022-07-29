@@ -5,7 +5,7 @@ from gestion_ambientes.models import Ambiente
 
 
 class Programa(models.Model):
-    nombre = models.CharField(max_length=200)
+    nombre = models.CharField(max_length=200, unique=True)
 
     def __str__(self):
         return "ID: {0} | NOMBRE: {1}".format(self.pk, self.nombre)
@@ -16,7 +16,7 @@ class Competencia(models.Model):
         ('generica', 'Genérica'),
         ('especifica', 'Específica'),
     )
-    nombre = models.CharField(max_length=200)
+    nombre = models.CharField(max_length=200, unique=True)
     tipo = models.CharField(max_length=200, choices=TIPO)
     programa = models.ForeignKey(
         Programa, null=True, on_delete=models.SET_NULL)
@@ -39,9 +39,10 @@ class Docente(models.Model):
         ('CNT', 'Contratista'),
     )
     nombre = models.CharField(max_length=200)
+    username = models.CharField(max_length=150, unique=True)
     tipo_identificación = models.CharField(
         max_length=200, choices=TIPO_IDENTIFICACION)
-    identificación = models.CharField(max_length=64)
+    identificación = models.CharField(max_length=64, unique=True)
     tipo_docente = models.CharField(max_length=200, choices=TIPO_DOCENTE)
     tipo_contrato = models.CharField(max_length=200, choices=TIPO_CONTRATO)
     area = models.CharField(max_length=200)

@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 
 
 class Periodo(models.Model):
-    nombre = models.CharField(max_length=200)
+    nombre = models.CharField(max_length=200, unique=True)
     fecha_inicio = models.DateField()
     fecha_final = models.DateField()
 

@@ -19,7 +19,7 @@ class Ambiente(models.Model):
     )
 
     id = models.CharField(max_length=64, primary_key=True)
-    nombre = models.CharField(max_length=200)
+    nombre = models.CharField(max_length=200,unique=True)
     tipo = models.CharField(max_length=200, choices=TIPO)
     aforo = models.IntegerField(validators=[validate_positive])
     ubicacion = models.CharField(max_length=200)

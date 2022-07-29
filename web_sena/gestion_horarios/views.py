@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from UserAuthentication.decorators import allowed_users
-
+import datetime as dt
 # Create your views here.
 
 from .models import Horario
@@ -14,7 +14,8 @@ def home(request):
     horarios = Horario.objects.all()
     field_names = ["Id", "Ambiente", "Competencia",
                    "Docente", "Día", "Hora Inicial", "Hora Final"]
-    values = horarios.values()
+    values = horarios.values('id', 'ambiente__nombre', 'competencia__nombre',
+                             'docente__nombre', 'dia', 'hora_inicio', 'hora_final')
     return render(request, 'CrudTemplate.html', {"field_names": field_names, 'values': values, 'root': 'horarios'})
 
 
@@ -24,10 +25,7 @@ def addHorario(request):
     form = HorarioForm()
     if request.method == 'POST':
         form = HorarioForm(request.POST, request.FILES)
-        if form.is_valid():
-            data = form.cleaned_data
-            horarios = Horario.objects.filter(docente=data['docente'])
-            print(horarios)
+        #if form.is_valid():
             #form.save()
             #return redirect('horarios')
     return render(request, 'AddTemplate.html', {'form': form, 'nombre_crud': "Horario", 'root': 'horarios'})

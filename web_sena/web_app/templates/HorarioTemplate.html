@@ -1,21 +1,32 @@
 {% extends './BaseTemplate.html' %}
 {% load static %}
-
+{% block nav_buttons %}
+<li class="nav-item m-1">
+    <a class="btn btn-outline-primary" aria-current="page" href="/perfil/">Ver Perfil</a>
+</li>
+{% endblock%}
 {% block title %}Horario{% endblock %}
 {% block body %}
 <div class="card m-5">
+    <div class="card-header">
+        Horario del Profesor: {{request.user.get_full_name}}
+    </div>
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Horario</th>
+                        {% for name in labels  %}
+                        <th>{{name}}</th>
+                        {% endfor %}
                     </tr>
                 </thead>
                 <tbody>
                     {% for entrada in horario %}
                     <tr>
-                        <td>{{entrada}}</td>
+                        {% for key, value in entrada.items %}
+                            <td>{{value}}</td>
+                        {% endfor %}
                     </tr>
                     {%endfor%}
                 </tbody>
